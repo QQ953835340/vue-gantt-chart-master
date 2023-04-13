@@ -21,7 +21,7 @@ export default {
   },
   computed: {
     maskWidth () {
-      return this.baseHour * this.spendTime / 3600 + 'px'
+      return this.baseHour * this.spendTime / 3600 / 12 + 'px'
     }
   },
   mounted () {

@@ -1,20 +1,27 @@
 <template>
   <div class="block drag-wrapper">
     <template v-for="(item,index) in block.childArray">
+<!--      <div-->
+<!--        :id="item.id"-->
+<!--        :key="index"-->
+<!--        :style="occupy(item)"-->
+<!--        :draggable="checkDrag(item)"-->
+<!--        class="bar"-->
+<!--        @mouseenter.capture="handleFloatView(item,$event)"-->
+<!--        @contextmenu.prevent="rightClick(item,$event)"-->
+<!--      >-->
       <div
-        :id="item.id"
-        :key="index"
-        :style="occupy(item)"
-        :draggable="checkDrag(item)"
-        class="bar"
-        @mouseenter.capture="handleFloatView(item,$event)"
-        @contextmenu.prevent="rightClick(item,$event)"
-      >
+          :id="item.id"
+          :key="index"
+          :style="occupy(item)"
+          class="bar"
+          @mouseenter.capture="handleFloatView(item,$event)"
+          @contextmenu.prevent="rightClick(item,$event)"
+        >
         <slot :item="item" />
       </div>
     </template>
   </div>
-
 </template>
 
 <script>
@@ -27,19 +34,20 @@ export default {
       type: Object,
       default: () => {}
     },
-    spendTime: {
-      type: Number,
-      required: true
-    }
+    // spendTime: {
+    //   type: Number,
+    //   required: true
+    // }
   },
   methods: {
     occupy (bar) {
       const during = dayjs(bar.end).diff(dayjs(bar.start), 'minute')
       const spendMinute = dayjs(dayjs(bar.start)).diff(this.timeSectionDayJs.start, 'minute')
-      const color = this.spendTime / 60 > spendMinute ? '#F56C6C' : '#67C23A'
+      // const color = this.spendTime / 60 > spendMinute ? '#F56C6C' : '#67C23A'
+      const color = bar.workType === '' ? '#67C23A' : '#F56C6C'
       return {
-        width: this.baseHour * during / 60 + 'px',
-        left: spendMinute / 60 * this.baseHour + 'px',
+        width: this.baseHour * during / 60 / 12 + 'px',
+        left: spendMinute / 60 / 12 * this.baseHour + 'px',
         backgroundColor: color
       }
     },

@@ -36,7 +36,7 @@ export default {
       return this.spendTime % 60
     },
     linePos () {
-      return this.baseHour * this.spendTime / 3600 + 'px'
+      return this.baseHour * this.spendTime / 3600 / 12 + 'px'
     }
   },
   mounted () { // 高度为视窗高度

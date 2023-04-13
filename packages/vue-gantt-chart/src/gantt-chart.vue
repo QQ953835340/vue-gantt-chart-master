@@ -21,10 +21,16 @@
           <slot name="side-box" :item="item" />
         </chart-side>
         <!--甘特图中心数据组件 -->
+<!--        <chart-container-->
+<!--          id="gantt-container"-->
+<!--          v-slot="{item}"-->
+<!--          :spend-time="spendTime"-->
+<!--          :gantt-data="chartData"-->
+<!--          :first-line-stick="firstLineStick"-->
+<!--        >-->
         <chart-container
           id="gantt-container"
           v-slot="{item}"
-          :spend-time="spendTime"
           :gantt-data="chartData"
           :first-line-stick="firstLineStick"
         >
@@ -98,7 +104,7 @@ export default {
   data () {
     return {
       //
-      baseHour: 50, // 基准小时
+      baseHour: 50 * 4, // 基准小时
       baseBlock: 40, // 基准高度
       //
       floatState: true

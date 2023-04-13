@@ -1,15 +1,23 @@
 <template>
   <div class="container">
-    <!--时间轴-->
-    <time-line :spend-time="spendTime" />
-    <!--灰色遮罩-->
-    <time-mask :spend-time="spendTime" />
+<!--    &lt;!&ndash;时间轴&ndash;&gt;-->
+<!--    <time-line :spend-time="spendTime" />-->
+<!--    &lt;!&ndash;灰色遮罩&ndash;&gt;-->
+<!--    <time-mask :spend-time="spendTime" />-->
     <div :style="blockStyle">
       <template v-for="(block,index) in ganttData">
+<!--        <chart-block-->
+<!--          :key="index"-->
+<!--          v-slot="{item}"-->
+<!--          :spend-time="spendTime"-->
+<!--          :class="{sticky:firstLineStick&&index===0}"-->
+<!--          :style="blockSelected(index)"-->
+<!--          :block="block"-->
+<!--          @click.native="handleHighlight(index)"-->
+<!--        >-->
         <chart-block
           :key="index"
           v-slot="{item}"
-          :spend-time="spendTime"
           :class="{sticky:firstLineStick&&index===0}"
           :style="blockSelected(index)"
           :block="block"
@@ -36,10 +44,10 @@ export default {
       type: Array,
       default: () => []
     },
-    spendTime: {
-      type: Number,
-      required: true
-    },
+    // spendTime: {
+    //   type: Number,
+    //   required: true
+    // },
     firstLineStick: { // 首行粘性
       type: Boolean,
       default: true
@@ -57,7 +65,7 @@ export default {
   computed: {
     blockStyle () {
       const { start, end } = this.timeSectionDayJs
-      return { width: `${this.baseHour * handleDaySet(start, end).length * 24}px` }
+      return { width: `${this.baseHour * handleDaySet(start, end).length * 24 / 12}px` }
     }
   },
   methods: {

@@ -13,13 +13,13 @@
           <div :key="index">{{ item }}</div>
         </template>
       </div>
-      <div class="header__container__hours" :style="headerContainerWidth">
-        <template v-for="(item, index) in hour">
-          <div :key="index" class="header__container__hour">
-            {{ item }}
-          </div>
-        </template>
-      </div>
+<!--      <div class="header__container__hours" :style="headerContainerWidth">-->
+<!--        <template v-for="(item, index) in hour">-->
+<!--          <div :key="index" class="header__container__hour">-->
+<!--            {{ item }}-->
+<!--          </div>-->
+<!--        </template>-->
+<!--      </div>-->
     </div>
   </div>
 </template>
@@ -49,7 +49,7 @@ export default {
       }
     },
     hour () {
-      const hours = this.day.length * 24
+      const hours = this.day.length * 24 / 12
       return handleHourSet(hours)
     },
     day () {
